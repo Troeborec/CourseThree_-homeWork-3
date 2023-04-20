@@ -80,3 +80,46 @@ skypro-# LEFT JOIN city ON employee.city_id = city.city_id;
  Lidia  |
 (5 ёЄЁюъ)
     /Почему - то не отоброжается, не могу понять
+
+    Исправил!)
+    skypro=# SELECT city.city_name AS Город,
+                    skypro-# employee.first_name AS Имя,
+                              skypro-# employee.last_name AS Фамилия
+skypro-# FROM employee
+                                                         skypro-# RIGHT JOIN city ON employee.city_id = city.city_id;
+Город      |  Имя   | Фамилия
+-----------------+--------+----------
+ Лондон          | Artem  | Seregin
+ Москва          | Nikita | Ivantsov
+ Москва          | Nikita | Rozhnov
+ Лондон          | Lidia  | Socova
+ Лондон          | Lidia  | Mironova
+ Санкт-Петербург |        |
+ Калифорния      |        |
+(7 ёЄЁюъ)
+    skypro=# SELECT employee.first_name AS Имя,
+                    skypro-# city.city_name  AS Город
+skypro-# FROM employee
+                                               skypro-# FULL JOIN city ON employee.city_id = city.city_id;
+Имя   |      Город
+--------+-----------------
+ Artem  | Лондон
+ Nikita | Москва
+ Nikita | Москва
+ Lidia  | Лондон
+ Lidia  | Лондон
+        | Санкт-Петербург
+        | Калифорния
+(7 ёЄЁюъ)
+    skypro=# SELECT employee.first_name AS Имя,
+                    skypro-# city.city_name AS Город
+skypro-# FROM employee
+                                               skypro-# LEFT JOIN city ON employee.city_id = city.city_id;
+Имя   | Город
+--------+--------
+ Artem  | Лондон
+ Nikita | Москва
+ Nikita | Москва
+ Lidia  | Лондон
+ Lidia  | Лондон
+(5 ёЄЁюъ)
