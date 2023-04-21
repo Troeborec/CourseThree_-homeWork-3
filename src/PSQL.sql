@@ -31,63 +31,29 @@ skypro=# SELECT * FROM city;
        3 | Калифорния
        4 | Санкт-Петербург
 (4 ёЄЁюъш)
-    skypro=# SELECT employee.first_name AS Имя,
-skypro-# employee.last_name AS Фамилия,
-skypro-# city.city_name AS Город
+Получите имена и фамилии сотрудников, а также города, в которых они проживают.
+
+    skypro=# SELECT employee.first_name AS ИМЯ,
+skypro-# employee.last_name AS ФАМИЛИЯ,
+skypro-# city.city_name AS ГОРОД
 skypro-# FROM employee
 skypro-# INNER JOIN city ON employee.city_id = city.city_id;
- Имя | Фамилия | Город
------+---------+-------
-(0 ёЄЁюъ)
-    skypro=# SELECT city.city_name AS Город,
-skypro-# employee.first_name AS Имя,
-skypro-# employee.last_name AS Фамилия
+  ИМЯ   | ФАМИЛИЯ  | ГОРОД
+--------+----------+--------
+ Artem  | Seregin  | Лондон
+ Nikita | Ivantsov | Москва
+ Nikita | Rozhnov  | Москва
+ Lidia  | Socova   | Лондон
+ Lidia  | Mironova | Лондон
+(5 ёЄЁюъ)
+
+    Получите города, а также имена и фамилии сотрудников, которые в них проживают.
+    skypro=# SELECT city.city_name AS ГОРОД,
+skypro-# employee.first_name AS ИМЯ,
+skypro-# employee.last_name AS ФАМИЛИЯ
 skypro-# FROM employee
 skypro-# RIGHT JOIN city ON employee.city_id = city.city_id;
-      Город      | Имя | Фамилия
------------------+-----+---------
- Лондон          |     |
- Санкт-Петербург |     |
- Москва          |     |
- Калифорния      |     |
-(4 ёЄЁюъш)
-    skypro=# SELECT employee.first_name AS Имя,
-skypro-# city.city_name  AS Город
-skypro-# FROM employee
-skypro-# FULL JOIN city ON employee.city_id = city.city_id;
-  Имя   |      Город
---------+-----------------
- Lidia  |
- Artem  |
- Nikita |
- Nikita |
- Lidia  |
-        | Лондон
-        | Санкт-Петербург
-        | Москва
-        | Калифорния
-(9 ёЄЁюъ)
-    skypro=# SELECT employee.first_name AS Имя,
-skypro-# city.city_name AS Город
-skypro-# FROM employee
-skypro-# LEFT JOIN city ON employee.city_id = city.city_id;
-  Имя   | Город
---------+-------
- Lidia  |
- Artem  |
- Nikita |
- Nikita |
- Lidia  |
-(5 ёЄЁюъ)
-    /Почему - то не отоброжается, не могу понять
-
-    Исправил!)
-    skypro=# SELECT city.city_name AS Город,
-                    skypro-# employee.first_name AS Имя,
-                              skypro-# employee.last_name AS Фамилия
-skypro-# FROM employee
-                                                         skypro-# RIGHT JOIN city ON employee.city_id = city.city_id;
-Город      |  Имя   | Фамилия
+      ГОРОД      |  ИМЯ   | ФАМИЛИЯ
 -----------------+--------+----------
  Лондон          | Artem  | Seregin
  Москва          | Nikita | Ivantsov
@@ -97,11 +63,13 @@ skypro-# FROM employee
  Санкт-Петербург |        |
  Калифорния      |        |
 (7 ёЄЁюъ)
-    skypro=# SELECT employee.first_name AS Имя,
-                    skypro-# city.city_name  AS Город
+    Получите имена всех сотрудников и названия всех городов.
+
+    skypro=# SELECT employee.first_name AS ИМЯ,
+skypro-# city.city_name AS ГОРОД
 skypro-# FROM employee
-                                               skypro-# FULL JOIN city ON employee.city_id = city.city_id;
-Имя   |      Город
+skypro-# FULL JOIN city ON employee.city_id = city.city_id;
+  ИМЯ   |      ГОРОД
 --------+-----------------
  Artem  | Лондон
  Nikita | Москва
@@ -111,11 +79,12 @@ skypro-# FROM employee
         | Санкт-Петербург
         | Калифорния
 (7 ёЄЁюъ)
-    skypro=# SELECT employee.first_name AS Имя,
-                    skypro-# city.city_name AS Город
+
+    skypro=# SELECT employee.first_name AS ИМЯ,
+skypro-# city.city_name AS ГОРОД
 skypro-# FROM employee
-                                               skypro-# LEFT JOIN city ON employee.city_id = city.city_id;
-Имя   | Город
+skypro-# LEFT JOIN city ON employee.city_id = city.city_id;
+  ИМЯ   | ГОРОД
 --------+--------
  Artem  | Лондон
  Nikita | Москва
@@ -123,3 +92,14 @@ skypro-# FROM employee
  Lidia  | Лондон
  Lidia  | Лондон
 (5 ёЄЁюъ)
+
+    Получите имена городов, в которых никто не живет.
+    skypro=# SELECT city.city_name AS ГОРОД
+skypro-# FROM employee
+skypro-# RIGHT JOIN city ON employee.city_id = city.city_id
+skypro-# WHERE employee.first_name IS NULL;
+      ГОРОД
+-----------------
+ Санкт-Петербург
+ Калифорния
+(2 ёЄЁюъш)
