@@ -103,3 +103,29 @@ skypro-# WHERE employee.first_name IS NULL;
  Санкт-Петербург
  Калифорния
 (2 ёЄЁюъш)
+
+    skypro=# SELECT * FROM employee
+skypro-# CROSS JOIN city;
+ id | first_name | last_name | gender | age | city_id | city_id |    city_name
+----+------------+-----------+--------+-----+---------+---------+-----------------
+  6 | Artem      | Seregin   | boy    |  12 |       2 |       1 | Москва
+  5 | Nikita     | Ivantsov  | boy    |  25 |       1 |       1 | Москва
+  4 | Nikita     | Rozhnov   | boy    |  22 |       1 |       1 | Москва
+  2 | Lidia      | Socova    | girl   |  63 |       2 |       1 | Москва
+  1 | Lidia      | Mironova  | girl   |  21 |       2 |       1 | Москва
+  6 | Artem      | Seregin   | boy    |  12 |       2 |       2 | Лондон
+  5 | Nikita     | Ivantsov  | boy    |  25 |       1 |       2 | Лондон
+  4 | Nikita     | Rozhnov   | boy    |  22 |       1 |       2 | Лондон
+  2 | Lidia      | Socova    | girl   |  63 |       2 |       2 | Лондон
+  1 | Lidia      | Mironova  | girl   |  21 |       2 |       2 | Лондон
+  6 | Artem      | Seregin   | boy    |  12 |       2 |       3 | Калифорния
+  5 | Nikita     | Ivantsov  | boy    |  25 |       1 |       3 | Калифорния
+  4 | Nikita     | Rozhnov   | boy    |  22 |       1 |       3 | Калифорния
+  2 | Lidia      | Socova    | girl   |  63 |       2 |       3 | Калифорния
+  1 | Lidia      | Mironova  | girl   |  21 |       2 |       3 | Калифорния
+  6 | Artem      | Seregin   | boy    |  12 |       2 |       4 | Санкт-Петербург
+  5 | Nikita     | Ivantsov  | boy    |  25 |       1 |       4 | Санкт-Петербург
+  4 | Nikita     | Rozhnov   | boy    |  22 |       1 |       4 | Санкт-Петербург
+  2 | Lidia      | Socova    | girl   |  63 |       2 |       4 | Санкт-Петербург
+  1 | Lidia      | Mironova  | girl   |  21 |       2 |       4 | Санкт-Петербург
+(20 ёЄЁюъ)
